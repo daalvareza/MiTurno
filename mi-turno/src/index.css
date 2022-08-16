@@ -337,6 +337,24 @@ iframe {
   font-size: 32px;
 }
 
+.title__modal {
+  margin-top: 32px;
+}
+
+.key__modal:nth-child(3) {
+  margin-top: 32px;
+}
+
+.value__modal {
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.button-container__modal button {
+  margin: 10px;
+  border: 2px solid #1F9547;
+}
+
 /* Footer Styles */
 .footer {
   grid-area: footer;
@@ -350,4 +368,45 @@ iframe {
 .footer a {
   color: #03228f;
   text-decoration: none;
+}
+
+@media only screen and (max-width: 1350px) {
+  .back-button-container {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width: 1140px) {
+  .back-button-container {
+    margin: 0px 200px 0px 100px;
+  }
+  .stepper, .img-container {
+    display: none;
+  }
+  .second-step {
+    grid-template-areas: 
+      "data data data data data data data"
+  ;
+  }
+}
+
+@media only screen and (max-width: 740px) {
+  .back-button-container {
+    margin: 0px 20px 0px 100px;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .header {
+    display: none;
+  }
+  .stepper-container {
+    position: static;
+  }
+  .layout {
+    grid-template-areas:
+      "stepper stepper stepper stepper stepper stepper"
+      "content content content content content content"
+      "footer footer footer footer footer footer";
+  }
 }

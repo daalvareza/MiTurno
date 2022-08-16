@@ -2,84 +2,20 @@ import { Button, InputAdornment, OutlinedInput, Radio } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { ThemeProvider } from '@mui/system';
 import { useEffect, useState } from 'react';
-import theme from '../Theme/theme';
+import theme from '../Modules/theme';
+import offices from '../Modules/offices';
 
-export default function FirstStep(props) {
+export default function FirstStep({ setPage, formData, setFormData }) {
 
   const ApiKey = "AIzaSyC1KMuI9FTePX9jxXC_w-yVU4JVx-Yk_SA";
 
-  const offices = [
-    {
-      "id" : 1,
-      "title" : "El Tesoro",
-      "direccion" : "Centro Comercial El Tesoro, Medellín",
-      "horario" : "Horario: 07:30-21:00"
-    },
-    {
-      "id" : 2,
-      "title" : "Oviedo",
-      "direccion" : "Centro Comercial Oviedo, Medellín",
-      "horario" : "Horario: 07:30-21:00"
-    },
-    {
-      "id" : 3,
-      "title" : "Santafé",
-      "direccion" : "Centro Comercial Santafé, Medellín",
-      "horario" : "Horario: 07:30-21:00"
-    },
-    {
-      "id" : 4,
-      "title" : "San Lucas",
-      "direccion" : "Mall de San Lucas, Medellín",
-      "horario" : "Horario: 07:30-21:00"
-    },
-    {
-      "id" : 5,
-      "title" : "Viva Envigado",
-      "direccion" : "Viva Envigado",
-      "horario" : "Horario: 07:30-21:00"
-    },
-    {
-      "id" : 6,
-      "title" : "City Plaza",
-      "direccion" : "Centro Comercial City Plaza, Envigado",
-      "horario" : "Horario: 07:30-21:00"
-    },
-    {
-      "id" : 7,
-      "title" : "San Diego",
-      "direccion" : "Centro Comercial San Diego",
-      "horario" : "Horario: 07:30-21:00"
-    },
-    {
-      "id" : 8,
-      "title" : "Mall Laureles",
-      "direccion" : "Mall Laureles",
-      "horario" : "Horario: 07:30-21:00"
-    },
-    {
-      "id" : 9,
-      "title" : "Bulevar de la 70",
-      "direccion" : "Bulevar la 70",
-      "horario" : "Horario: 07:30-21:00"
-    },
-  ];
-
-  const [selectedOffice, setSelectedOffice] = useState();
+  const [selectedOffice, setSelectedOffice] = useState(formData.officeSelected);
   const [selectedDirection, setSelectedDirection] = useState("droguerias+cruz+verde+Medellin");
   const [searchOffice, setSearchOffice] = useState();
 
-  const [next, setNext] = useState(false);
-
   useEffect(() => {
-      if (next === true) {
-          props.setPage(2);
-      }
-  }, [next, props]);
-
-  useEffect(() => {
-    if (selectedOffice !== undefined) {
-      let direction = offices.find(office => office.title === selectedOffice).direccion;
+    if (selectedOffice !== "") {
+      let direction = offices.find(office => office.title === selectedOffice)?.direccion;
       direction = encodeURIComponent(`cruz verde ${direction}`);
       setSelectedDirection(direction);
     }
@@ -117,7 +53,7 @@ export default function FirstStep(props) {
                 <div className='office' key={office.id}>
                   <div className='radio-button-container'>
                     <Radio checked={selectedOffice === office.title}
-                      onChange={() => { setSelectedOffice(office.title) }}
+                      onChange={() => { setSelectedOffice(office.title); setFormData({...formData, officeSelected: office.title}) }}
                       value={office.title}
                       name="office"
                       inputProps={{ 'aria-label': office.title }}/>
@@ -135,7 +71,7 @@ export default function FirstStep(props) {
                 <div className='office' key={office.id}>
                   <div className='radio-button-container'>
                     <Radio checked={selectedOffice === office.title}
-                      onChange={() => { setSelectedOffice(office.title) }}
+                      onChange={() => { setSelectedOffice(office.title); setFormData({...formData, officeSelected: office.title})  }}
                       value={office.title}
                       name="office"
                       inputProps={{ 'aria-label': office.title }}/>
@@ -152,7 +88,7 @@ export default function FirstStep(props) {
         </div>
         <div className='button-container button-container__select'>
             <ThemeProvider theme={theme}>
-                <Button variant='contained' color='secondary' onClick={() => {setNext(true)}}>Seleccionar</Button>
+                <Button variant='contained' color='secondary' onClick={() => {if (formData.officeSelected !== "") {setPage(2)}}}>Seleccionar</Button>
             </ThemeProvider>
         </div>
       </div>

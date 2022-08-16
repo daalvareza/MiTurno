@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import theme from '../Theme/theme';
+import theme from '../Modules/theme';
 import { Button } from '@mui/material';
 import { ThemeProvider } from '@mui/system';
 
-export default function Home(props) {
-
-    const [next, setNext] = useState(false);
-
-    useEffect(() => {
-        if (next === true) {
-            props.setPage(1);
-        }
-    }, [next, props]);
-
+export default function Home({ setPage }) {
   return (
     <div className='home'>
         <div className='home-left'>
@@ -37,7 +28,7 @@ export default function Home(props) {
             </div>
             <div className='button-container'>
                 <ThemeProvider theme={theme}>
-                    <Button variant='contained' color='secondary' onClick={() => {setNext(true)}}>Solicitar turno</Button>
+                    <Button variant='contained' color='secondary' onClick={() => {setPage(1)}}>Solicitar turno</Button>
                 </ThemeProvider>
             </div>
         </div>

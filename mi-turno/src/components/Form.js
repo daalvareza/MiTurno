@@ -8,16 +8,26 @@ import ThirdStep from './ThirdStep';
 
 export default function Form() {
     const [page, setPage] = useState(0);
+    const [formData, setFormData] = useState({
+        officeSelected: "",
+        typeID: "CC",
+        numID: "",
+        firstName: "",
+        secondName: "",
+        firstLastName: "",
+        secondLastName: "",
+        service: "Consulta Externa"
+    });
 
     const pageDisplay = () => {
         if (page === 0) {
-            return <Home page={page} setPage={setPage}/>
+            return <Home setPage={setPage}/>
         } else if (page === 1) {
-            return <FirstStep page={page} setPage={setPage}/>
+            return <FirstStep setPage={setPage} formData={formData} setFormData={setFormData}/>
         } else if (page === 2) {
-            return <SecondStep page={page} setPage={setPage}/>
+            return <SecondStep setPage={setPage} formData={formData} setFormData={setFormData}/>
         } else if (page >= 3) {
-            return <ThirdStep page={page} setPage={setPage}/>
+            return <ThirdStep setPage={setPage} formData={formData} setFormData={setFormData}/>
         }
     }
 
@@ -26,7 +36,7 @@ export default function Form() {
         <Header page={page} setPage={setPage}/>
         {pageDisplay()}
         <footer className="footer">
-            &copy; Github: .com
+            &copy; https://github.com/daalvareza/MiTurno
         </footer>
     </>
   )
