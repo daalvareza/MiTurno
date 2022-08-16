@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { renderToStaticMarkup, renderToString } from 'react-dom/server'
+import { renderToStaticMarkup } from 'react-dom/server'
 import {Box, ThemeProvider} from '@mui/system'
 import theme from '../Modules/theme';
 import { Button, Modal } from '@mui/material';

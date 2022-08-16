@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import theme from '../Modules/theme';
 import { Button } from '@mui/material';
 import { ThemeProvider } from '@mui/system';
@@ -16,14 +16,10 @@ export default function Home({ setPage }) {
             </div>
             <div className='list-step'>
                 <div className='number-circle'>2</div>
-                <div>Ingresa tus datos</div>
-            </div>   
+                <div>Ingresa tus datos y selecciona el servicio</div>
+            </div>
             <div className='list-step'>
                 <div className='number-circle'>3</div>
-                <div>Selecciona el servicio</div>
-            </div>   
-            <div className='list-step'>
-                <div className='number-circle'>4</div>
                 <div>Verifica tu información</div>
             </div>
             <div className='button-container'>
