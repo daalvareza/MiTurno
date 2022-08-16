@@ -16,6 +16,13 @@ const theme = createTheme({
     search: {
       main: '#EFEFEF',
       contrastText: '#A7A7A7',
+    },
+    modal: {
+      main: '#fff',
+      contrastText: '#1F9547',
+    },
+    back : {
+      contrastText: "#191919"
     }
   },
 });
